@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}SmartChoice Randugunting{% endblock %}</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <div class="site-background"></div>
+
+    <header class="navbar">
+        <a href="{{ url_for('dashboard') }}" class="brand">
+            <span class="brand-mark">S</span>
+            <span>SmartChoice <strong>Randugunting</strong></span>
+        </a>
+
+        <nav class="nav-links">
+              <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('alternatif') }}">Alternatif</a>
+            <a href="{{ url_for('aspek') }}">Aspek</a>
+            <a href="{{ url_for('metode') }}">Metode</a>
+            <a href="{{ url_for('ranking') }}">Ranking</a>
+        </nav>
+
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            ☰
+        </button>
+    </header>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="{{ url_for('dashboard') }}">Beranda</a>
+        <a href="{{ url_for('alternatif') }}">Data UMKM</a>
+        <a href="{{ url_for('penilaian') }}">Skor Penilaian</a>
+        <a href="{{ url_for('aspek') }}">5 Aspek</a>
+        <a href="{{ url_for('metode') }}">Metode AHP–TOPSIS</a>
+        <a href="{{ url_for('ranking') }}">Hasil Perankingan</a>
+    </div>
+
+    <main class="page-container">
+        {% block content %}{% endblock %}
+    </main>
+
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+    {% block scripts %}{% endblock %}
+
+    <footer class="footer">
+
+    <div class="footer-inner">
+
+        <div class="footer-brand">
+            <div class="footer-logos">
+
+                <div class="footer-logo footer-logo-uny">
+                    <img
+                        src="{{ url_for('static', filename='img/static/images/logo-uny.png') }}"
+                        alt="Logo Universitas Negeri Yogyakarta"
+                    >
+                </div>
+
+                <div class="footer-logo footer-logo-kkn">
+                    <img
+                        src="{{ url_for('static', filename='img/logo-kkn-2026.png') }}"
+                        alt="Logo KKN UNY 2026"
+                    >
+                </div>
+
+                <div class="footer-logo footer-logo-randugunting">
+                    <img
+                        src="{{ url_for('static', filename='img/logo-randugunting.png') }}"
+                        alt="Logo Dusun Randugunting"
+                    >
+                </div>
+
+            </div>
+        </div>
+
+        <div class="footer-content">
+
+            <div class="footer-heading">
+                SmartChoice Randugunting
+            </div>
+
+            <p class="footer-description">
+                Evaluasi sederhana untuk membantu UMKM mengenali potensi
+                dan menentukan langkah pengembangan usaha.
+            </p>
+
+        </div>
+
+        <div class="footer-contact">
+            <span class="footer-eyebrow">
+                PUNYA USAHA YANG INGIN DIEVALUASI?
+            </span>
+
+            <h2>Mari berdiskusi.</h2>
+
+            <p>
+                Hubungi kami untuk informasi lebih lanjut atau kesempatan
+                evaluasi UMKM lainnya.
+            </p>
+
+            <a
+                href="mailto:kknrandugunting2026@gmail.com"
+                class="footer-email"
+            >
+                ✉ kknrandugunting2026@gmail.com
+            </a>
+        </div>
+
+        <div class="footer-bottom">
+            <span>
+                SmartChoice Randugunting
+            </span>
+
+            <span>
+                © Made with purpose by KKN UNY 2026
+            </span>
+        </div>
+
+    </div>
+
+</footer>
+
+</body>
+</html>

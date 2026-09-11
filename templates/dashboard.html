@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+
+{% block title %}Beranda — SmartChoice{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+    <div>
+        <span class="eyebrow">SMARTCHOICE RANDUGUNTING</span>
+        <h1>Selamat datang di ruang eksplorasi UMKM.</h1>
+        <p>
+            Kenali data, pahami aspek penilaian, dan lihat bagaimana
+            hasil pengolahan data disusun menjadi perankingan.
+        </p>
+    </div>
+
+    <a href="{{ url_for('ranking') }}" class="btn btn-primary">
+        Lihat Hasil Ranking →
+    </a>
+</div>
+
+<div class="stats-grid">
+
+    <div class="stat-card">
+        <span class="stat-label">ALTERNATIF</span>
+        <strong>{{ umkm|length }}</strong>
+        <span class="stat-caption">UMKM dalam data penilaian</span>
+    </div>
+
+    <div class="stat-card">
+        <span class="stat-label">ASPEK</span>
+        <strong>{{ criteria|length }}</strong>
+        <span class="stat-caption">Aspek yang digunakan</span>
+    </div>
+
+    <div class="stat-card">
+        <span class="stat-label">METODE</span>
+        <strong>2</strong>
+        <span class="stat-caption">AHP dan TOPSIS</span>
+    </div>
+
+    <div class="stat-card stat-card-accent">
+        <span class="stat-label">HASIL</span>
+        <strong>01</strong>
+        <span class="stat-caption">Halaman perankingan</span>
+    </div>
+
+</div>
+
+<section class="dashboard-section">
+
+    <div class="section-heading">
+        <div>
+            <span class="section-label">JELAJAHI PROYEK</span>
+            <h2>Mulai dari mana?</h2>
+        </div>
+
+        <span class="section-muted">Pilih halaman untuk melanjutkan.</span>
+    </div>
+
+    <div class="explore-grid">
+
+        <a href="{{ url_for('alternatif') }}" class="explore-card">
+            <div class="explore-card-top">
+                <span class="card-number">01</span>
+                <span class="card-arrow">↗</span>
+            </div>
+            <div class="explore-icon">▦</div>
+            <h3>Data UMKM</h3>
+            <p>
+                Lihat daftar usaha yang menjadi objek penilaian
+                beserta informasi dasarnya.
+            </p>
+            <span class="card-link">Buka data →</span>
+        </a>
+
+        <a href="{{ url_for('penilaian') }}" class="explore-card">
+            <div class="explore-card-top">
+                <span class="card-number">02</span>
+                <span class="card-arrow">↗</span>
+            </div>
+            <div class="explore-icon">⌗</div>
+            <h3>Skor Penilaian</h3>
+            <p>
+                Lihat skor setiap UMKM pada lima aspek
+                yang digunakan dalam penelitian.
+            </p>
+            <span class="card-link">Lihat skor →</span>
+        </a>
+
+        <a href="{{ url_for('aspek') }}" class="explore-card">
+            <div class="explore-card-top">
+                <span class="card-number">03</span>
+                <span class="card-arrow">↗</span>
+            </div>
+            <div class="explore-icon">✦</div>
+            <h3>5 Aspek Penilaian</h3>
+            <p>
+                Pahami alasan pemilihan lima aspek
+                dan bagaimana masing-masing dinilai.
+            </p>
+            <span class="card-link">Kenali aspek →</span>
+        </a>
+
+        <a href="{{ url_for('metode') }}" class="explore-card">
+            <div class="explore-card-top">
+                <span class="card-number">04</span>
+                <span class="card-arrow">↗</span>
+            </div>
+            <div class="explore-icon">∑</div>
+            <h3>Metode AHP–TOPSIS</h3>
+            <p>
+                Pelajari bagaimana bobot dan hasil perankingan
+                diperoleh melalui metode komputasi.
+            </p>
+            <span class="card-link">Pelajari metode →</span>
+        </a>
+
+        <a href="{{ url_for('ranking') }}" class="explore-card explore-card-wide">
+            <div class="explore-card-top">
+                <span class="card-number">05</span>
+                <span class="card-arrow">↗</span>
+            </div>
+            <div class="explore-icon">↗</div>
+            <h3>Hasil Perankingan</h3>
+            <p>
+                Lihat urutan hasil penilaian dan nilai preferensi
+                setiap UMKM berdasarkan data yang digunakan.
+            </p>
+            <span class="card-link">Lihat hasil akhir →</span>
+        </a>
+
+    </div>
+
+</section>
+
+<section class="dashboard-bottom">
+    <div>
+        <span class="section-label">ALUR EKSPLORASI</span>
+        <h2>Data → Aspek → Metode → Hasil</h2>
+    </div>
+
+    <a href="{{ url_for('ranking') }}" class="text-link">
+        Langsung ke hasil perankingan →
+    </a>
+</section>
+
+{% endblock %}

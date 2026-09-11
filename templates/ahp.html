@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block title %}AHP — SmartChoice{% endblock %}
+
+{% block content %}
+
+<div class="breadcrumb">
+    <a href="{{ url_for('metode') }}">← Kembali ke Metode</a>
+</div>
+
+<div class="page-header compact">
+    <div>
+        <span class="eyebrow">METODE 01</span>
+        <h1>Analytical Hierarchy Process</h1>
+        <p>
+            AHP digunakan untuk menentukan bobot kepentingan
+            setiap kriteria dalam proses penilaian.
+        </p>
+    </div>
+
+    <a href="{{ url_for('topsis') }}" class="btn btn-primary">
+        Lanjut ke TOPSIS →
+    </a>
+</div>
+
+<div class="method-explanation-grid">
+
+    <div class="content-card large-card">
+        <span class="section-label">APA ITU AHP?</span>
+        <h2>Menentukan aspek mana yang lebih berpengaruh.</h2>
+
+        <p class="large-paragraph">
+            Analytical Hierarchy Process (AHP) merupakan metode
+            pengambilan keputusan yang digunakan untuk menentukan
+            prioritas atau bobot dari beberapa kriteria.
+        </p>
+
+        <p class="large-paragraph">
+            Dalam proyek ini, AHP digunakan untuk memperoleh bobot
+            lima aspek penilaian UMKM.
+        </p>
+    </div>
+
+    <div class="content-card">
+        <span class="section-label">ALUR SINGKAT</span>
+
+        <div class="vertical-steps">
+            <div>
+                <span>01</span>
+                <strong>Matriks perbandingan</strong>
+                <small>Membandingkan tingkat kepentingan kriteria.</small>
+            </div>
+
+            <div>
+                <span>02</span>
+                <strong>Normalisasi</strong>
+                <small>Mengolah nilai perbandingan menjadi skala yang sebanding.</small>
+            </div>
+
+            <div>
+                <span>03</span>
+                <strong>Bobot prioritas</strong>
+                <small>Menentukan bobot setiap kriteria.</small>
+            </div>
+
+            <div>
+                <span>04</span>
+                <strong>Uji konsistensi</strong>
+                <small>Memeriksa konsistensi perbandingan.</small>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="content-card">
+    <div class="card-heading">
+        <div>
+            <span class="section-label">BOBOT KRITERIA</span>
+            <h2>Contoh bobot yang digunakan</h2>
+        </div>
+
+        <span class="section-muted">Dapat disesuaikan dengan hasil AHP penelitian.</span>
+    </div>
+
+    <div class="weight-list">
+        {% for criterion in criteria %}
+        <a href="{{ url_for('aspek_detail', slug=criterion.slug) }}"
+           class="weight-row">
+            <div class="weight-label">
+                <span>{{ criterion.code }}</span>
+                <strong>{{ criterion.name }}</strong>
+            </div>
+
+            <div class="weight-bar">
+                <div class="weight-bar-fill"
+                     style="width: {{ criterion.weight * 100 }}%;"></div>
+            </div>
+
+            <strong class="weight-value">
+                {{ "%.4f"|format(criterion.weight) }}
+            </strong>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="page-navigation">
+    <a href="{{ url_for('metode') }}" class="btn btn-secondary">
+        ← Metode
+    </a>
+
+    <a href="{{ url_for('topsis') }}" class="btn btn-primary">
+        Pelajari TOPSIS →
+    </a>
+</div>
+
+{% endblock %}

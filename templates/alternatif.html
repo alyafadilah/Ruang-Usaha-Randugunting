@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}Data UMKM — SmartChoice{% endblock %}
+
+{% block content %}
+
+<div class="breadcrumb">
+    <a href="{{ url_for('dashboard') }}">← Kembali ke Beranda</a>
+</div>
+
+<div class="page-header compact">
+    <div>
+        <span class="eyebrow">DATA PENELITIAN</span>
+        <h1>Data UMKM</h1>
+        <p>
+            Daftar usaha yang menjadi objek penilaian
+            dalam pengolahan data.
+        </p>
+    </div>
+
+    <a href="{{ url_for('penilaian') }}" class="btn btn-secondary">
+        Lihat Skor Penilaian →
+    </a>
+</div>
+
+<div class="info-banner">
+    <div class="info-banner-icon">✦</div>
+    <div>
+        <strong>Apa itu alternatif?</strong>
+        <p>
+            Alternatif adalah objek yang dinilai dalam proses pengambilan
+            keputusan. Dalam proyek ini, alternatif berupa UMKM yang
+            menjadi objek penilaian.
+        </p>
+    </div>
+</div>
+
+<div class="table-card">
+
+    <div class="table-card-header">
+        <div>
+            <span class="section-label">DAFTAR ALTERNATIF</span>
+            <h2>{{ umkm|length }} UMKM</h2>
+        </div>
+
+        <div class="search-box">
+            <span>⌕</span>
+            <input type="text" id="searchInput" placeholder="Cari nama UMKM...">
+        </div>
+    </div>
+
+    <div class="table-wrapper">
+        <table class="data-table" id="umkmTable">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nama UMKM</th>
+                    <th>C1</th>
+                    <th>C2</th>
+                    <th>C3</th>
+                    <th>C4</th>
+                    <th>C5</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for item in umkm %}
+                <tr>
+                    <td class="table-number">{{ loop.index }}</td>
+                    <td class="name-cell">{{ item.name }}</td>
+
+                    {% for score in item.scores %}
+                    <td>
+                        <span class="score-pill">{{ score }}</span>
+                    </td>
+                    {% endfor %}
+
+                    <td>
+                        <a href="{{ url_for('detail_alternatif', umkm_id=item.id) }}"
+                           class="table-action">
+                            Lihat Detail →
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<div class="page-navigation">
+    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">
+        ← Beranda
+    </a>
+
+    <a href="{{ url_for('penilaian') }}" class="btn btn-primary">
+        Lanjut ke Skor →
+    </a>
+</div>
+
+{% endblock %}

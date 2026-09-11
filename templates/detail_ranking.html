@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block title %}Detail Ranking — SmartChoice{% endblock %}
+
+{% block content %}
+
+<div class="breadcrumb">
+    <a href="{{ url_for('ranking') }}">← Kembali ke Hasil Ranking</a>
+</div>
+
+<div class="detail-hero">
+    <div>
+        <span class="eyebrow">DETAIL HASIL PERANKINGAN</span>
+        <h1>{{ item.name }}</h1>
+        <p>
+            Penjelasan nilai preferensi dan skor lima aspek
+            yang digunakan dalam proses pengolahan.
+        </p>
+    </div>
+
+    <div class="detail-rank-badge">
+        <span>PERINGKAT</span>
+        <strong>#{{ item.rank }}</strong>
+    </div>
+</div>
+
+<div class="detail-grid">
+
+    <div class="detail-main">
+
+        <div class="content-card accent-card">
+            <span class="section-label">NILAI PREFERENSI</span>
+
+            <div class="preference-display">
+                <strong>{{ "%.4f"|format(item.score) }}</strong>
+                <span>Nilai hasil perhitungan TOPSIS</span>
+            </div>
+
+            <p>
+                Nilai preferensi digunakan untuk menyusun urutan
+                alternatif. Semakin tinggi nilainya, semakin dekat
+                alternatif tersebut dengan solusi ideal berdasarkan
+                kriteria yang digunakan.
+            </p>
+        </div>
+
+        <div class="content-card">
+            <div class="card-heading">
+                <div>
+                    <span class="section-label">SKOR PENILAIAN</span>
+                    <h2>Lima aspek usaha</h2>
+                </div>
+            </div>
+
+            <div class="score-detail-list">
+                {% for criterion in criteria %}
+                {% set score = item.scores[loop.index0] %}
+
+                <div class="score-detail-row">
+                    <div class="score-detail-label">
+                        <span class="criterion-code">{{ criterion.code }}</span>
+                        <div>
+                            <strong>{{ criterion.name }}</strong>
+                            <small>{{ criterion.short }}</small>
+                        </div>
+                    </div>
+
+                    <div class="score-bar">
+                        <div class="score-bar-fill"
+                             style="width: {{ score * 20 }}%;"></div>
+                    </div>
+
+                    <strong class="score-value">{{ score }}</strong>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="content-card">
+            <span class="section-label">PENJELASAN</span>
+            <h2>Bagaimana hasil ini dipahami?</h2>
+
+            <p class="card-text">
+                Hasil ini diperoleh dari pengolahan skor penilaian
+                menggunakan bobot kriteria dan metode TOPSIS.
+                Nilai preferensi kemudian dibandingkan dengan
+                alternatif lainnya untuk menghasilkan peringkat.
+            </p>
+
+            <a href="{{ url_for('topsis') }}" class="text-link">
+                Pelajari cara kerja TOPSIS →
+            </a>
+        </div>
+
+    </div>
+
+    <aside class="detail-sidebar">
+
+        <div class="content-card">
+            <span class="section-label">NAVIGASI</span>
+
+            <div class="side-links">
+                <a href="{{ url_for('ranking') }}">
+                    <span>Semua Ranking</span>
+                    <span>→</span>
+                </a>
+
+                <a href="{{ url_for('detail_alternatif', umkm_id=item.id) }}">
+                    <span>Detail Data UMKM</span>
+                    <span>→</span>
+                </a>
+
+                <a href="{{ url_for('penilaian') }}">
+                    <span>Semua Skor</span>
+                    <span>→</span>
+                </a>
+
+                <a href="{{ url_for('aspek') }}">
+                    <span>5 Aspek Penilaian</span>
+                    <span>→</span>
+                </a>
+            </div>
+        </div>
+
+    </aside>
+
+</div>
+
+{% endblock %}

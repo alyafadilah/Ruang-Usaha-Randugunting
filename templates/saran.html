@@ -1,0 +1,288 @@
+{% extends "base.html" %}
+
+{% block title %}Saran Pengembangan — SmartChoice{% endblock %}
+
+{% block content %}
+
+<div class="suggestion-page">
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="{{ url_for('ranking') }}">
+            ← Kembali ke Hasil Perankingan
+        </a>
+    </div>
+
+    <!-- Header halaman -->
+    <header class="suggestion-hero">
+        <div class="hero-eyebrow">
+            SARAN PENGEMBANGAN UMKM
+        </div>
+
+        <h1>{{ umkm.name }}</h1>
+
+        <p>
+            Beberapa hal yang dapat menjadi bahan evaluasi dan
+            pengembangan usaha berdasarkan hasil pengolahan data.
+        </p>
+    </header>
+
+
+    <!-- Ringkasan usaha -->
+    <section class="business-summary">
+
+        <div class="summary-heading">
+            <span class="section-label">INFORMASI USAHA</span>
+            <h2>{{ umkm.name }}</h2>
+        </div>
+
+        {% if ranking_item %}
+        <div class="summary-metrics">
+
+            <div class="metric-box">
+                <span class="metric-label">Peringkat</span>
+                <strong class="metric-value">
+                    #{{ ranking_item.rank }}
+                </strong>
+            </div>
+
+            <div class="metric-divider"></div>
+
+            <div class="metric-box">
+                <span class="metric-label">Nilai Preferensi</span>
+                <strong class="metric-value">
+                    {{ "%.4f"|format(ranking_item.score) }}
+                </strong>
+            </div>
+
+        </div>
+        {% endif %}
+
+    </section>
+
+
+    <!-- Penjelasan umum -->
+    <section class="overview-section">
+
+        <div class="section-label">
+            GAMBARAN UMUM
+        </div>
+
+        <h2>Apa yang dapat dikembangkan?</h2>
+
+        <p>
+            Saran pengembangan berikut disusun dengan melihat aspek
+            penilaian yang digunakan dalam pengolahan data. Tujuannya
+            bukan untuk menentukan usaha yang baik atau kurang baik,
+            tetapi memberikan gambaran mengenai aspek yang masih dapat
+            diperhatikan dan dikembangkan.
+        </p>
+
+    </section>
+
+
+    <!-- Heading aspek -->
+    <section class="aspects-heading">
+
+        <div>
+            <span class="section-label">ASPEK YANG DINILAI</span>
+
+            <h2>Gambaran dan Saran Pengembangan</h2>
+        </div>
+
+        <p>
+            Setiap aspek memiliki peran dalam menggambarkan kondisi
+            usaha. Aspek dengan skor relatif lebih rendah dapat menjadi
+            salah satu bahan evaluasi.
+        </p>
+
+    </section>
+
+
+    <!-- Daftar aspek -->
+    <section class="suggestion-grid">
+
+        {% for criterion in criteria %}
+
+        {% set criterion_index = loop.index0 %}
+        {% set score = umkm.scores[criterion_index] %}
+
+        <article class="suggestion-card">
+
+            <!-- Header kartu -->
+            <div class="suggestion-card-top">
+
+                <div class="suggestion-number">
+                    {{ "%02d"|format(loop.index) }}
+                </div>
+
+                <div class="suggestion-title">
+                    <span class="suggestion-code">
+                        {{ criterion.code }}
+                    </span>
+
+                    <h3>{{ criterion.name }}</h3>
+                </div>
+
+            </div>
+
+
+            <!-- Deskripsi singkat -->
+            <p class="suggestion-subtitle">
+                {{ criterion.short }}
+            </p>
+
+
+            <!-- Skor -->
+            <div class="score-row">
+
+                <div>
+                    <span class="score-label">Skor penilaian</span>
+                    <strong class="score-number">{{ score }}</strong>
+                </div>
+
+                {% if score <= 2 %}
+                    <span class="status-badge status-focus">
+                        Perlu diperhatikan
+                    </span>
+                {% elif score == 3 %}
+                    <span class="status-badge status-develop">
+                        Masih dapat dikembangkan
+                    </span>
+                {% else %}
+                    <span class="status-badge status-good">
+                        Sudah menjadi kekuatan
+                    </span>
+                {% endif %}
+
+            </div>
+
+
+            <!-- Penjelasan kondisi -->
+            <div class="suggestion-description">
+
+                {% if score <= 2 %}
+
+                <p>
+                    Aspek ini dapat menjadi salah satu prioritas
+                    pengembangan karena skor yang diperoleh masih
+                    relatif rendah dibandingkan skala penilaian
+                    yang digunakan.
+                </p>
+
+                {% elif score == 3 %}
+
+                <p>
+                    Aspek ini sudah berjalan, tetapi masih memiliki
+                    ruang untuk ditingkatkan agar dapat mendukung
+                    perkembangan usaha secara lebih optimal.
+                </p>
+
+                {% else %}
+
+                <p>
+                    Aspek ini menunjukkan kondisi yang relatif baik.
+                    Pemilik usaha dapat mempertahankannya sekaligus
+                    mengembangkannya secara bertahap.
+                </p>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- Contoh pengembangan -->
+            <div class="suggestion-action">
+
+                <div class="action-label">
+                    CONTOH PENGEMBANGAN
+                </div>
+
+                {% if criterion.slug == "lama-usaha" %}
+
+                <p>
+                    Mempertahankan keberlangsungan usaha, mencatat
+                    pengalaman usaha, serta melakukan evaluasi secara
+                    berkala terhadap perubahan kebutuhan pelanggan.
+                </p>
+
+                {% elif criterion.slug == "pendapatan" %}
+
+                <p>
+                    Mencatat pemasukan dan pengeluaran secara rutin,
+                    mengevaluasi produk yang paling diminati, serta
+                    mempertimbangkan strategi penjualan yang sesuai.
+                </p>
+
+                {% elif criterion.slug == "jangkauan-pemasaran" %}
+
+                <p>
+                    Memperluas jangkauan pelanggan melalui rekomendasi
+                    pelanggan, kerja sama dengan pihak lain, serta
+                    promosi ke wilayah di luar lingkungan sekitar.
+                </p>
+
+                {% elif criterion.slug == "pemanfaatan-digital" %}
+
+                <p>
+                    Memanfaatkan WhatsApp, Google Maps, media sosial,
+                    katalog digital, atau platform penjualan online
+                    sesuai kebutuhan dan kemampuan usaha.
+                </p>
+
+                {% elif criterion.slug == "jumlah-orang" %}
+
+                <p>
+                    Membagi tugas dengan lebih jelas, meningkatkan
+                    keterampilan orang yang terlibat, serta menyesuaikan
+                    kebutuhan tenaga kerja dengan kegiatan usaha.
+                </p>
+
+                {% endif %}
+
+            </div>
+
+        </article>
+
+        {% endfor %}
+
+    </section>
+
+
+    <!-- Catatan -->
+    <aside class="ranking-note">
+
+        <div class="note-icon">✦</div>
+
+        <p>
+            Saran ini merupakan bahan evaluasi berdasarkan data dan
+            kriteria yang digunakan. Saran tidak bersifat wajib dan
+            dapat disesuaikan dengan kondisi, kebutuhan, serta kemampuan
+            masing-masing usaha.
+        </p>
+
+    </aside>
+
+
+    <!-- Navigasi bawah -->
+    <div class="page-navigation">
+
+        <a
+            href="{{ url_for('ranking') }}"
+            class="btn btn-secondary"
+        >
+            ← Kembali ke Perankingan
+        </a>
+
+        <a
+            href="{{ url_for('detail_ranking', umkm_id=umkm.id) }}"
+            class="btn btn-primary"
+        >
+            Lihat Detail Hasil →
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

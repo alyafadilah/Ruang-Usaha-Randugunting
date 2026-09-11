@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block title %}{{ detail.title }} — SmartChoice{% endblock %}
+
+{% block content %}
+
+<div class="breadcrumb">
+    <a href="{{ url_for('aspek') }}">← Kembali ke 5 Aspek</a>
+</div>
+
+<div class="detail-aspect-header">
+    <div class="detail-aspect-number">{{ criterion.icon }}</div>
+
+    <div>
+        <span class="eyebrow">{{ criterion.code }} · ASPEK PENILAIAN</span>
+        <h1>{{ detail.title }}</h1>
+        <p>{{ detail.subtitle }}</p>
+    </div>
+</div>
+
+<div class="aspect-detail-layout">
+
+    <div class="aspect-detail-main">
+
+        <section class="content-card large-card">
+            <span class="section-label">01 · LATAR BELAKANG</span>
+            <h2>{{ detail.question }}</h2>
+
+            <p class="large-paragraph">
+                {{ detail.description }}
+            </p>
+        </section>
+
+        <section class="content-card large-card">
+            <span class="section-label">02 · RELEVANSI</span>
+            <h2>Mengapa relevan untuk UMKM?</h2>
+
+            <p class="large-paragraph">
+                {{ detail.relevance }}
+            </p>
+        </section>
+
+        <section class="content-card large-card">
+            <span class="section-label">03 · PENGUKURAN</span>
+            <h2>Bagaimana aspek ini dinilai?</h2>
+
+            <p class="large-paragraph">
+                {{ detail.measurement }}
+            </p>
+
+            <div class="measurement-note">
+                <span>✦</span>
+                <div>
+                    <strong>Skor digunakan sebagai dasar pengolahan.</strong>
+                    <p>
+                        Nilai aspek kemudian diproses bersama aspek lainnya
+                        untuk memperoleh hasil penilaian yang lebih terstruktur.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <aside class="aspect-detail-sidebar">
+
+        <div class="content-card sticky-card">
+            <span class="section-label">RINGKASAN ASPEK</span>
+
+            <div class="summary-item">
+                <span>Kode</span>
+                <strong>{{ criterion.code }}</strong>
+            </div>
+
+            <div class="summary-item">
+                <span>Nama</span>
+                <strong>{{ criterion.name }}</strong>
+            </div>
+
+            <div class="summary-item">
+                <span>Jenis</span>
+                <strong>{{ criterion.type }}</strong>
+            </div>
+
+            <div class="summary-item">
+                <span>Bobot contoh</span>
+                <strong>{{ "%.2f"|format(criterion.weight) }}</strong>
+            </div>
+
+            <hr>
+
+            <a href="{{ url_for('penilaian') }}" class="btn btn-primary btn-full">
+                Lihat Skor Aspek →
+            </a>
+
+            <a href="{{ url_for('aspek') }}" class="btn btn-secondary btn-full">
+                Semua Aspek
+            </a>
+        </div>
+
+    </aside>
+
+</div>
+
+{% endblock %}

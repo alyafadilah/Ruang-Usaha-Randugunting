@@ -1,0 +1,180 @@
+{% extends "base.html" %}
+
+{% block title %}Hasil Perankingan — SmartChoice{% endblock %}
+
+{% block content %}
+
+<div class="breadcrumb">
+    <a href="{{ url_for('dashboard') }}">← Kembali ke Beranda</a>
+</div>
+
+<div class="page-header">
+    <div>
+        <span class="eyebrow">HASIL PENGOLAHAN DATA</span>
+        <h1>Hasil Perankingan</h1>
+        <p>
+            Urutan alternatif berdasarkan nilai preferensi
+            hasil pengolahan metode AHP–TOPSIS.
+        </p>
+    </div>
+
+    <a href="{{ url_for('penilaian') }}" class="btn btn-secondary">
+        Lihat Skor Penilaian →
+    </a>
+</div>
+
+
+{% if ranking %}
+
+{% set first = ranking[0] %}
+
+<div class="winner-card">
+
+    <div class="winner-content">
+        <span class="winner-label">PERINGKAT PERTAMA</span>
+
+        <div class="winner-trophy">♛</div>
+
+        <h2>{{ first.name }}</h2>
+
+        <p>
+            Alternatif dengan nilai preferensi tertinggi
+            berdasarkan kriteria dan bobot yang digunakan.
+        </p>
+
+        <a
+            href="{{ url_for('detail_ranking', umkm_id=first.id) }}"
+            class="btn btn-primary"
+        >
+            Lihat Detail Hasil →
+        </a>
+    </div>
+
+    <div class="winner-score">
+        <span>Nilai Preferensi</span>
+        <strong>{{ "%.4f"|format(first.score) }}</strong>
+        <small>Rank #{{ first.rank }}</small>
+    </div>
+
+</div>
+
+{% endif %}
+
+
+<div class="table-card ranking-table-card">
+
+    <div class="table-card-header">
+        <div>
+            <span class="section-label">RANKING RESULT</span>
+            <h2>Daftar Perankingan</h2>
+        </div>
+
+        <div class="search-box">
+            <span>⌕</span>
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Cari nama UMKM..."
+            >
+        </div>
+    </div>
+
+
+    <div class="table-wrapper">
+        <table class="data-table ranking-table" id="umkmTable">
+
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Nama UMKM</th>
+                    <th>Nilai Preferensi</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for item in ranking %}
+
+                <tr class="{% if item.rank == 1 %}top-ranking-row{% endif %}">
+
+                    <td>
+                        {% if item.rank == 1 %}
+                            <span class="rank-medal">♛</span>
+                        {% else %}
+                            <span class="rank-number">
+                                {{ item.rank }}
+                            </span>
+                        {% endif %}
+                    </td>
+
+
+                    <td class="name-cell">
+                        {{ item.name }}
+                    </td>
+
+
+                    <td>
+                        <strong class="preference-score">
+                            {{ "%.4f"|format(item.score) }}
+                        </strong>
+                    </td>
+
+
+                    <td>
+                        <div class="ranking-actions">
+
+                            <a
+                                href="{{ url_for('detail_ranking', umkm_id=item.id) }}"
+                                class="btn btn-secondary"
+                            >
+                                Lihat Detail
+                            </a>
+
+                            <a
+                                href="{{ url_for('saran', umkm_id=item.id) }}"
+                                class="btn btn-primary"
+                            >
+                                Saran Pengembangan
+                                <span>→</span>
+                            </a>
+
+                        </div>
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+    </div>
+
+</div>
+
+
+<div class="ranking-note">
+    <span>✦</span>
+
+    <p>
+        Hasil perankingan merupakan gambaran berdasarkan kriteria,
+        bobot, dan data yang digunakan. Peringkat bukan berarti
+        usaha dengan posisi lebih rendah tidak memiliki potensi.
+    </p>
+</div>
+
+
+<div class="page-navigation">
+
+    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">
+        ← Beranda
+    </a>
+
+    <a href="{{ url_for('penilaian') }}" class="btn btn-primary">
+        Lihat Skor Penilaian →
+    </a>
+
+</div>
+
+{% endblock %}

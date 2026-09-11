@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}5 Aspek Penilaian — SmartChoice{% endblock %}
+
+{% block content %}
+
+<div class="breadcrumb">
+    <a href="{{ url_for('dashboard') }}">← Kembali ke Beranda</a>
+</div>
+
+<div class="page-header">
+    <div>
+        <span class="eyebrow">DASAR PENILAIAN</span>
+        <h1>Lima aspek yang membentuk gambaran usaha.</h1>
+        <p>
+            Setiap aspek dipilih untuk melihat karakteristik usaha
+            dari sudut pandang yang berbeda.
+        </p>
+    </div>
+
+    <a href="{{ url_for('penilaian') }}" class="btn btn-secondary">
+        Lihat Skor Penilaian →
+    </a>
+</div>
+
+<div class="aspect-intro">
+    <div class="aspect-intro-number">05</div>
+    <div>
+        <span class="section-label">WHY THESE FIVE?</span>
+        <h2>
+            Bukan sekadar angka.
+            <br>
+            Setiap aspek punya alasan.
+        </h2>
+        <p>
+            Lima aspek berikut digunakan untuk membantu menggambarkan
+            kondisi usaha melalui pengalaman, pendapatan, jangkauan pasar,
+            pemanfaatan digital, dan keterlibatan orang dalam usaha.
+        </p>
+    </div>
+</div>
+
+<div class="aspect-grid">
+
+    {% for criterion in criteria %}
+    <a href="{{ url_for('aspek_detail', slug=criterion.slug) }}"
+       class="aspect-card">
+
+        <div class="aspect-card-top">
+            <span class="aspect-number">{{ criterion.icon }}</span>
+            <span class="aspect-arrow">↗</span>
+        </div>
+
+        <div class="aspect-symbol">{{ criterion.code }}</div>
+
+        <h2>{{ criterion.name }}</h2>
+
+        <p>{{ criterion.short }}.</p>
+
+        <div class="aspect-card-bottom">
+            <span>Pelajari alasan pemilihan</span>
+            <strong>→</strong>
+        </div>
+
+    </a>
+    {% endfor %}
+
+</div>
+
+<div class="page-navigation">
+    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">
+        ← Beranda
+    </a>
+
+    <a href="{{ url_for('metode') }}" class="btn btn-primary">
+        Lanjut ke Metode →
+    </a>
+</div>
+
+{% endblock %}

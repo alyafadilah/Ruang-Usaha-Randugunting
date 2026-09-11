@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}TOPSIS — SmartChoice{% endblock %}
+
+{% block content %}
+
+<div class="breadcrumb">
+    <a href="{{ url_for('metode') }}">← Kembali ke Metode</a>
+</div>
+
+<div class="page-header compact">
+    <div>
+        <span class="eyebrow">METODE 02</span>
+        <h1>Technique for Order Preference by Similarity to Ideal Solution</h1>
+        <p>
+            TOPSIS digunakan untuk menyusun urutan alternatif
+            berdasarkan kedekatannya dengan solusi ideal.
+        </p>
+    </div>
+
+    <a href="{{ url_for('ranking') }}" class="btn btn-primary">
+        Lihat Hasil Ranking →
+    </a>
+</div>
+
+<div class="method-explanation-grid">
+
+    <div class="content-card large-card">
+        <span class="section-label">APA ITU TOPSIS?</span>
+        <h2>Membandingkan alternatif dengan kondisi ideal.</h2>
+
+        <p class="large-paragraph">
+            TOPSIS merupakan metode pengambilan keputusan yang
+            menentukan peringkat alternatif berdasarkan jaraknya
+            terhadap solusi ideal positif dan solusi ideal negatif.
+        </p>
+
+        <p class="large-paragraph">
+            Alternatif dengan nilai preferensi lebih tinggi
+            menunjukkan posisi yang lebih dekat dengan solusi ideal
+            berdasarkan kriteria yang digunakan.
+        </p>
+    </div>
+
+    <div class="content-card">
+        <span class="section-label">ALUR SINGKAT</span>
+
+        <div class="vertical-steps">
+            <div>
+                <span>01</span>
+                <strong>Matriks keputusan</strong>
+                <small>Menggunakan skor setiap alternatif.</small>
+            </div>
+
+            <div>
+                <span>02</span>
+                <strong>Normalisasi</strong>
+                <small>Menyetarakan skala nilai.</small>
+            </div>
+
+            <div>
+                <span>03</span>
+                <strong>Normalisasi terbobot</strong>
+                <small>Menggabungkan skor dengan bobot AHP.</small>
+            </div>
+
+            <div>
+                <span>04</span>
+                <strong>Solusi ideal</strong>
+                <small>Menentukan kondisi ideal positif dan negatif.</small>
+            </div>
+
+            <div>
+                <span>05</span>
+                <strong>Nilai preferensi</strong>
+                <small>Menyusun urutan hasil perankingan.</small>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="content-card">
+    <span class="section-label">INTI PERHITUNGAN</span>
+    <h2>Nilai preferensi</h2>
+
+    <div class="formula-box">
+        <span class="formula-label">Nilai preferensi TOPSIS</span>
+        <strong>Vᵢ = Dᵢ⁻ / (Dᵢ⁺ + Dᵢ⁻)</strong>
+        <p>
+            Nilai preferensi diperoleh dari perbandingan jarak
+            alternatif terhadap solusi ideal positif dan negatif.
+        </p>
+    </div>
+</div>
+
+<div class="page-navigation">
+    <a href="{{ url_for('ahp') }}" class="btn btn-secondary">
+        ← Pelajari AHP
+    </a>
+
+    <a href="{{ url_for('ranking') }}" class="btn btn-primary">
+        Lihat Hasil Ranking →
+    </a>
+</div>
+
+{% endblock %}

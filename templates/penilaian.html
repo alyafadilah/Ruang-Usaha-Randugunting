@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block title %}Skor Penilaian — SmartChoice{% endblock %}
+
+{% block content %}
+
+<div class="breadcrumb">
+    <a href="{{ url_for('dashboard') }}">← Kembali ke Beranda</a>
+</div>
+
+<div class="page-header compact">
+    <div>
+        <span class="eyebrow">DATA PENILAIAN</span>
+        <h1>Skor Penilaian</h1>
+        <p>
+            Gambaran skor setiap UMKM berdasarkan lima aspek
+            yang digunakan dalam penelitian.
+        </p>
+    </div>
+
+    <a href="{{ url_for('ranking') }}" class="btn btn-primary">
+        Lihat Perankingan →
+    </a>
+</div>
+
+<div class="info-banner">
+    <div class="info-banner-icon">⌗</div>
+    <div>
+        <strong>Bagaimana membaca skor?</strong>
+        <p>
+            Setiap UMKM memiliki skor pada lima aspek. Skor ini menjadi
+            dasar pengolahan data sebelum dihitung menggunakan metode AHP
+            dan TOPSIS.
+        </p>
+    </div>
+</div>
+
+<div class="criteria-legend">
+    {% for criterion in criteria %}
+    <a href="{{ url_for('aspek_detail', slug=criterion.slug) }}"
+       class="legend-item">
+        <span>{{ criterion.code }}</span>
+        <strong>{{ criterion.name }}</strong>
+        <small>{{ criterion.short }}</small>
+    </a>
+    {% endfor %}
+</div>
+
+<div class="table-card">
+
+    <div class="table-card-header">
+        <div>
+            <span class="section-label">MATRIKS PENILAIAN</span>
+            <h2>Skor setiap alternatif</h2>
+        </div>
+
+        <div class="search-box">
+            <span>⌕</span>
+            <input type="text" id="searchInput" placeholder="Cari nama UMKM...">
+        </div>
+    </div>
+
+    <div class="table-wrapper">
+        <table class="data-table" id="umkmTable">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nama UMKM</th>
+                    {% for criterion in criteria %}
+                    <th>
+                        {{ criterion.code }}
+                        <small>{{ criterion.name }}</small>
+                    </th>
+                    {% endfor %}
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for item in umkm %}
+                <tr>
+                    <td class="table-number">{{ loop.index }}</td>
+                    <td class="name-cell">{{ item.name }}</td>
+
+                    {% for score in item.scores %}
+                    <td>
+                        <span class="score-pill">{{ score }}</span>
+                    </td>
+                    {% endfor %}
+
+                    <td>
+                        <a href="{{ url_for('detail_alternatif', umkm_id=item.id) }}"
+                           class="table-action">
+                            Detail →
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<div class="page-navigation">
+    <a href="{{ url_for('alternatif') }}" class="btn btn-secondary">
+        ← Data UMKM
+    </a>
+
+    <a href="{{ url_for('ranking') }}" class="btn btn-primary">
+        Lihat Hasil Ranking →
+    </a>
+</div>
+
+{% endblock %}

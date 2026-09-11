@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block title %}Metode — SmartChoice{% endblock %}
+
+{% block content %}
+
+<div class="breadcrumb">
+    <a href="{{ url_for('dashboard') }}">← Kembali ke Beranda</a>
+</div>
+
+<div class="page-header">
+    <div>
+        <span class="eyebrow">PENDEKATAN KOMPUTASI</span>
+        <h1>Bagaimana penilaian ini diolah?</h1>
+        <p>
+            Data dari lima aspek diolah menggunakan dua metode
+            untuk menentukan bobot dan menyusun hasil perankingan.
+        </p>
+    </div>
+</div>
+
+<div class="method-flow">
+
+    <div class="method-flow-step">
+        <span>01</span>
+        <strong>Data Penilaian</strong>
+        <small>Skor setiap UMKM</small>
+    </div>
+
+    <div class="method-flow-line">→</div>
+
+    <div class="method-flow-step">
+        <span>02</span>
+        <strong>AHP</strong>
+        <small>Menentukan bobot</small>
+    </div>
+
+    <div class="method-flow-line">→</div>
+
+    <div class="method-flow-step">
+        <span>03</span>
+        <strong>TOPSIS</strong>
+        <small>Menyusun ranking</small>
+    </div>
+
+    <div class="method-flow-line">→</div>
+
+    <div class="method-flow-step">
+        <span>04</span>
+        <strong>Hasil</strong>
+        <small>Nilai preferensi</small>
+    </div>
+
+</div>
+
+<div class="method-grid">
+
+    <a href="{{ url_for('ahp') }}" class="method-card">
+        <div class="method-card-top">
+            <span class="method-badge">AHP</span>
+            <span>↗</span>
+        </div>
+
+        <h2>Menentukan bobot aspek.</h2>
+
+        <p>
+            AHP digunakan untuk menentukan tingkat kepentingan
+            relatif dari setiap kriteria yang digunakan.
+        </p>
+
+        <div class="method-card-footer">
+            <span>Pelajari AHP</span>
+            <strong>→</strong>
+        </div>
+    </a>
+
+    <a href="{{ url_for('topsis') }}" class="method-card">
+        <div class="method-card-top">
+            <span class="method-badge">TOPSIS</span>
+            <span>↗</span>
+        </div>
+
+        <h2>Menyusun hasil perankingan.</h2>
+
+        <p>
+            TOPSIS digunakan untuk membandingkan alternatif
+            berdasarkan kedekatannya dengan kondisi ideal.
+        </p>
+
+        <div class="method-card-footer">
+            <span>Pelajari TOPSIS</span>
+            <strong>→</strong>
+        </div>
+    </a>
+
+</div>
+
+<div class="content-card method-note">
+    <span class="section-label">CATATAN</span>
+    <h2>Metode bukan hasil akhir.</h2>
+    <p>
+        AHP dan TOPSIS merupakan alat bantu pengolahan data.
+        Hasil perankingan tetap perlu dipahami berdasarkan
+        aspek, bobot, dan data yang digunakan.
+    </p>
+
+    <a href="{{ url_for('ranking') }}" class="text-link">
+        Lihat hasil perankingan →
+    </a>
+</div>
+
+{% endblock %}
