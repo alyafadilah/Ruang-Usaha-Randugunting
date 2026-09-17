@@ -59,7 +59,7 @@ UMKM_DATA = [
         "name": "Kletikan",
         "scores": [2, 3, 3, 3, 2]
     },
-    {
+        {
         "id": "warung-ibu-sukini",
         "name": "Warung Ibu Sukini",
         "scores": [3, 2, 2, 2, 2]
@@ -68,8 +68,19 @@ UMKM_DATA = [
         "id": "butik-ibu-esti",
         "name": "Butik Ibu Esti",
         "scores": [2, 2, 2, 3, 2]
+    },
+    {
+        "id": "ayam-segar-ibu",
+        "name": "Ayam Segar Ibu",
+        "scores": [5, 2, 2, 2, 2]
+    },
+    {
+        "id": "toko-madani",
+        "name": "Toko Madani",
+        "scores": [3, 5, 1, 2, 4]
     }
 ]
+
 
 # =========================================================
 # KRITERIA
