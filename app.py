@@ -20,54 +20,54 @@ app = Flask(__name__)
 
 UMKM_DATA = [
     {
-        "id": "ayam-goreng-kalasan-bu-wiwik",
-        "name": "Ayam Goreng Kalasan Bu Wiwik",
-        "scores": [5, 5, 5, 4, 4]
-    },
-    {
-        "id": "sate-bu-ratmi-randugunting",
-        "name": "Sate Bu Ratmi Randugunting",
-        "scores": [5, 4, 4, 4, 4]
-    },
-    {
-        "id": "dapur-mama-rista",
-        "name": "Dapur Mama Rista",
-        "scores": [3, 4, 4, 4, 3]
-    },
-    {
-        "id": "toko-gas-dan-kelontong-pak-yuniarto",
-        "name": "Toko Gas dan Kelontong Pak Yuniarto",
-        "scores": [4, 4, 3, 3, 3]
+        "id": "warung-snack-ibu-suharmi",
+        "name": "Warung Snack Ibu Suharmi",
+        "scores": [4, 2, 1, 1, 1]
     },
     {
         "id": "kost-pak-fajar",
         "name": "Kost Pak Fajar",
-        "scores": [4, 3, 3, 3, 3]
+        "scores": [4, 3, 1, 2, 2]
     },
     {
-        "id": "roti-syafaat",
-        "name": "Roti Syafaat",
-        "scores": [3, 3, 3, 3, 3]
+        "id": "dapur-mama-rista",
+        "name": "Dapur Mama Rista",
+        "scores": [2, 2, 5, 5, 2]
     },
     {
-        "id": "warung-mak-nyak",
-        "name": "Warung Mak Nyak",
-        "scores": [3, 3, 3, 2, 3]
+        "id": "toko-gas-dan-kelontong-pak-yuniarto",
+        "name": "Toko Gas dan Kelontong Pak Yuniarto",
+        "scores": [5, 3, 1, 2, 3]
     },
     {
-        "id": "kletikan",
-        "name": "Kletikan",
-        "scores": [2, 3, 3, 3, 2]
-    },
-        {
-        "id": "warung-ibu-sukini",
-        "name": "Warung Ibu Sukini",
-        "scores": [3, 2, 2, 2, 2]
+        "id": "sate-bu-ratmi-randugunting",
+        "name": "Sate Bu Ratmi Randugunting",
+        "scores": [5, 4, 1, 2, 2]
     },
     {
         "id": "butik-ibu-esti",
         "name": "Butik Ibu Esti",
-        "scores": [2, 2, 2, 3, 2]
+        "scores": [4, 1, 1, 1, 1]
+    },
+    {
+        "id": "warung-ibu-sukini",
+        "name": "Warung Ibu Sukini",
+        "scores": [4, 1, 2, 2, 2]
+    },
+    {
+        "id": "ayam-goreng-kalasan-bu-wiwik",
+        "name": "Ayam Goreng Kalasan bu Wiwik",
+        "scores": [5, 3, 4, 5, 3]
+    },
+    {
+        "id": "roti-syafaat",
+        "name": "Roti Syafaat",
+        "scores": [2, 2, 5, 2, 3]
+    },
+    {
+        "id": "warung-mak-nyak",
+        "name": "Warung Mak Nyak",
+        "scores": [5, 2, 1, 2, 2]
     },
     {
         "id": "ayam-segar-ibu",
@@ -92,7 +92,7 @@ CRITERIA = [
         "name": "Lama Usaha",
         "short": "Pengalaman dan keberlangsungan usaha",
         "type": "Benefit",
-        "weight": 0.20,
+        "weight": 0.067,
         "slug": "lama-usaha",
         "icon": "01"
     },
@@ -101,7 +101,7 @@ CRITERIA = [
         "name": "Pendapatan",
         "short": "Gambaran kemampuan ekonomi usaha",
         "type": "Benefit",
-        "weight": 0.25,
+        "weight": 0.439,
         "slug": "pendapatan",
         "icon": "02"
     },
@@ -110,7 +110,7 @@ CRITERIA = [
         "name": "Jangkauan Pemasaran",
         "short": "Luasnya pasar yang dijangkau",
         "type": "Benefit",
-        "weight": 0.20,
+        "weight": 0.189,
         "slug": "jangkauan-pemasaran",
         "icon": "03"
     },
@@ -119,7 +119,7 @@ CRITERIA = [
         "name": "Pemanfaatan Digital",
         "short": "Penggunaan media digital dalam usaha",
         "type": "Benefit",
-        "weight": 0.20,
+        "weight": 0.189,
         "slug": "pemanfaatan-digital",
         "icon": "04"
     },
@@ -128,7 +128,7 @@ CRITERIA = [
         "name": "Jumlah Orang",
         "short": "Keterlibatan orang dalam usaha",
         "type": "Benefit",
-        "weight": 0.15,
+        "weight": 0.117,
         "slug": "jumlah-orang",
         "icon": "05"
     }
